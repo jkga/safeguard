@@ -1,0 +1,8 @@
+{
+  "name": "safeguard",
+  "version": "1.0.0",
+  "main": "./src/index.js",
+  "repository": "https://github.com/jkga/safeguard.git",
+  "author": "kenneth <johnkennethgibasabella@gmail.com>",
+  "license": "MIT"
+}
