@@ -96,3 +96,6 @@ export class SafeGuard {
     })
   }
 }
+
+// inject to global scope when including <script>
+if(window) window.SafeGuard = SafeGuard
