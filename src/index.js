@@ -70,29 +70,32 @@ export class SafeGuard {
 
   async run(names = []) { 
     let response = {}
+    let recentResult = {}
     return new Promise(async (resolve, reject) => { 
-      names.forEach(async (el, index) => {
-        let callbackResult = this.__SafeGuards[el].callback()
+      names.forEach(async (el, index) => { 
+        let callbackResult = this.__SafeGuards[el].callback(recentResult)
 
         // logger
         if(callbackResult) this.log('Run', `${el} MiddleWare is running`, callbackResult)
 
         // PROMISE
         response[el] = callbackResult.then ? await callbackResult  : callbackResult 
+        recentResult = response[el]
 
         // ALL callbacks must passed otherwise SafeGuard will
         // return a rejected promise
         let isPassed = 1
 
         for(let x in response) { 
-          isPassed = isPassed / response[x]
-          if((!isPassed) || isPassed === Infinity) return reject() & this.log('Error', `${el} [DONE with errors]`, callbackResult)
-          resolve(response)
-
+          isPassed = isPassed / response[x].result
+          if((!isPassed) || isPassed === Infinity) return reject(callbackResult) & this.log('Error', `${el} [DONE with errors]`, callbackResult)
+          if((!isPassed) || isPassed === Infinity) break
           // logger
           this.log('Run', `${el} [DONE]`, callbackResult)
         }
       })
+
+      resolve(response)
     })
   }
 }

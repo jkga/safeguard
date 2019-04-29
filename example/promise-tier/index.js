@@ -15,7 +15,7 @@ let myMiddleware = new Promise((resolve, reject) => {
 /* IMPORTANT
 * running the .run() will throw an error since middlewares defined on the module 'myMiddleware' has
 * not yet been initialized. For this case, use .merge()
-* guard.run(['computeMiddleware'])
+* guard.merge(['computeMiddleware'])
 */
 
 // your function returning a promise
@@ -25,13 +25,13 @@ guard.merge([myMiddleware]).then(() => {
   let target = document.querySelector('#middleware-result')
 
   // Run sample middleware
-  guard.run(['computeMiddleware']).then(res => {
+  guard.run(['computeMiddleware']).then(res => { 
     // Do some function after your middleware
     target.innerHTML = '<span style="color: green;">[middleware has been executed]</span>'
 
   }).catch(e => {
 
-    // if your middleware returns fail
+    // if one of your middlewares fail
     target.innerHTML = 'Sorry! Your middleware failed!'
 
   })

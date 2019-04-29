@@ -6,7 +6,7 @@ import { SafeGuard } from '../../../src/index.js'
 
 export default class{
   constructor () {
-    // set middleware's name to 'Auth'
+    // set middleware's name to 'computeMiddleware'
     // .set('name', callback)
     // middleware name must be unique otherwise it will be override
     let description = 'This is a saple middleware description'
@@ -15,10 +15,13 @@ export default class{
   
   // For promise function, use async, await function
   async render () {
-    
-    // Your Promise function must be resolved to 1 or 0
+    // Your Promise function must be resolved to an object with
+    // payload and result attributes
     let isPromise = await new Promise((resolve, reject) => {
-      resolve(1)
+      resolve({
+        payload: null,
+        result: 1
+      })
     })
 
     return isPromise

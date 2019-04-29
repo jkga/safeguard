@@ -12,8 +12,9 @@ export default class{
     return new SafeGuard().set('computeMiddleware', this.render)
   }
 
-  // callback must only return 1 or 0
-  render () {
+  // callback must return Object with payload and result
+  // result MUST ONLY have a value of 1 or 0
+  render () { 
     // Place your functions
     const sampleComputation = (5 * 2)
     // Must return 1 or 0

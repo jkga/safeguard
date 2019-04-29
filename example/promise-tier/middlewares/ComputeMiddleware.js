@@ -7,7 +7,7 @@ import Ajax from '../ajax.js'
 
 export default class{
   constructor () {
-    // set middleware's name to 'Auth'
+    // set middleware's name to 'computeMiddleware'
     // .set('name', callback)
     // middleware name must be unique otherwise it will be overriden
     let description = 'This is a sample middleware description'
@@ -21,7 +21,10 @@ export default class{
       // make an ajax request
       new Ajax().getAlphabet().then(res => {
         // resolve
-        resolve(1)
+        resolve({
+          payload: res,
+          result: 1
+        })
       })
     })
 

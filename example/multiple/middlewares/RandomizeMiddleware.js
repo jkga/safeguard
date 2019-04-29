@@ -9,17 +9,22 @@ export default class{
     // set middleware's name to 'computeMiddleware'
     // .set('name', callback)
     // middleware name must be unique otherwise it will be overriden
-    return new SafeGuard().set('computeMiddleware', this.render)
+    return new SafeGuard().set('randomizeMiddleware', this.render)
   }
 
   // callback must only return 1 or 0
-  render () {
+  render (resultFromPreviousMiddleware) { 
+
+    // capture result from recent middleware
+    console.log(`Result from previous middleware :`, resultFromPreviousMiddleware)
+
     // Place your functions
-    const sampleComputation = (5 * 2)
+    const num = Math.floor(Math.random() * (+20 - +1)) + +1;
+
     // Must return 1 or 0
     return {
-      payload: sampleComputation,
-      result: (sampleComputation >= 10) ? 1 : 0
+      payload: num,
+      result: (num >= 10) ? 1 : 0
     }
   }
 }
