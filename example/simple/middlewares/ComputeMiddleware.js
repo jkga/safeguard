@@ -6,9 +6,9 @@ import { SafeGuard } from '../../../src/index.js'
 
 export default class{
   constructor () {
-    // set middleware's name to 'Auth'
+    // set middleware's name to 'computeMiddleware'
     // .set('name', callback)
-    // middleware name must be unique otherwise it will be override
+    // middleware name must be unique otherwise it will be overriden
     return new SafeGuard().set('computeMiddleware', this.render)
   }
 

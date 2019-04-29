@@ -4,8 +4,8 @@ import ComputeMiddleware from './middlewares/ComputeMiddleware.js'
 // Load Middleware class
 const guard = new SafeGuard({debug: true, mode: 'verbose'})
 
-// mimic importing modules in asyc way
-// this is what happening if you use module's dynamic loading
+// mimic importing modules in async way
+// if you use module's dynamic loading
 let myMiddleware = new Promise((resolve, reject) => {
   // returns middleware async
   resolve(new ComputeMiddleware())
