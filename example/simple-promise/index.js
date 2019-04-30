@@ -4,17 +4,20 @@ import {SafeGuard} from '../../src/index.js'
 // Load Middleware class
 const guard = new SafeGuard({debug: true})
 
-const RandomizeMiddleware = new SafeGuard().set('randomizeMiddleware', () => {
-    // Place your functions
-    const num = Math.floor(Math.random() * (+20 - +1)) + +1;
-    // result MUST return either 1 or 0
-    return {
-      payload: num,
-      result: (num >= 10) ? 1 : 0
-    }
-  }, {
-    description : 'This middleware produce a random number from 0 - 20 with a valid value of >= 10'
-  }) 
+const RandomizeMiddleware = new SafeGuard().set('randomizeMiddleware', async () => {
+    return await new Promise((resolve, reject) => {
+      // Place your functions
+      const num = Math.floor(Math.random() * (+20 - +1)) + +1;
+      // result MUST return either 1 or 0
+      resolve ({
+        payload: num,
+        result: (num >= 10) ? 1 : 0
+      })
+    })
+    
+}, {
+  description : 'This middleware produce a random number from 0 - 20 with a valid value of >= 10'
+}) 
 
 
 
